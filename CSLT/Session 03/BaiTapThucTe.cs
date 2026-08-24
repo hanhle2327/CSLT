@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Threading.Channels;
 
@@ -9,7 +10,6 @@ namespace CSLT.Session_03
     {
         static void Bai_1()
         {
-            Console.OutputEncoding = Encoding.UTF8;
             /*Bài 1: Tính Tiền Điện Sinh Hoạt Gia Đình Theo Bậc Thang (EVN)
             Tình huống thực tế: Tập đoàn Điện lực Việt Nam (EVN) áp dụng biểu giá điện sinh hoạt bậc thang lũy tiến
             để khuyến khích người dân tiết kiệm điện. Hãy viết chương trình tính hóa đơn tiền điện hàng tháng cho một
@@ -59,7 +59,6 @@ namespace CSLT.Session_03
         }
         static void Bai_2()
         {
-            Console.OutputEncoding = Encoding.UTF8;
             /*Bài 2: Hệ Thống Theo Dõi Chỉ Số BMI & Đánh Giá Tình Trạng Sức Khỏe
             Tình huống thực tế: Một ứng dụng theo dõi sức khỏe cá nhân cần tính chỉ số khối cơ thể (BMI - Body Mass
             Index) dựa trên chiều cao và cân nặng do người dùng cung cấp, đồng thời đưa ra lời khuyên về cân nặng lý
@@ -115,7 +114,8 @@ namespace CSLT.Session_03
         }
         static void Bai_3()
         {
-            /*Tình huống thực tế: Một quầy đổi tiền tại sân bay cần ứng dụng tính toán nhanh số tiền khách hàng nhận
+            /*Bài 3: Ứng Dụng Quy Đổi Tiền Tệ Ngoại Tệ Đa Tỷ Giá Ngân Hàng
+            Tình huống thực tế: Một quầy đổi tiền tại sân bay cần ứng dụng tính toán nhanh số tiền khách hàng nhận
             được khi đổi từ Việt Nam Đồng (VND) sang các loại ngoại tệ phổ biến (USD, EUR, JPY, GBP) có tính phí dịch
             vụ.
             Kiến thức trọng tâm: Kiểu decimal, enum (CurrencyType), switch-case, định dạng tiền tệ quốc tế.
@@ -128,7 +128,7 @@ namespace CSLT.Session_03
             • Tính số tiền VNĐ thực tế sau khi trừ phí, sau đó quy đổi ra ngoại tệ tương ứng.
             • In kết quả chính xác đến 2 chữ số thập phân kèm ký hiệu tiền tệ*/
 
-            Console.OutputEncoding = Encoding.UTF8;
+
             decimal tyGiaUSD = 25400m;
             decimal tyGiaEUR = 27200m;
             decimal tyGiaJPY = 1650m;
@@ -182,12 +182,43 @@ namespace CSLT.Session_03
             Console.WriteLine($"Phí dịch vụ (0.5%): {phiDichVu:#,##0} VNĐ");
             Console.WriteLine($"Số tiền VNĐ tính đổi: {soTienSauPhi:#,##0} VNĐ");
             Console.WriteLine($"Số tiền {kiHieu} nhận được: {soTienNgoaiTe:F2} {kiHieu}");
-
-
-
         }
-        public static void Main(string[] args)
+        static void Bai_4()
         {
+            /*Bài 4: Tính Tuổi Chính Xác & Đếm Ngược Ngày Sinh Nhật
+            Tình huống thực tế: Hệ thống chăm sóc khách hàng của một công ty bán lẻ cần tự động tính tuổi chính xác
+            của khách hàng và đếm số ngày còn lại đến sinh nhật tiếp theo để gửi voucher ưu đãi.
+            Kiến thức trọng tâm: Kiểu DateTime, TimeSpan, DateTime.ParseExact, toán tử trừ hai ngày, ép kiểu.
+            Yêu cầu bài toán:
+            • Nhập ngày tháng năm sinh của người dùng dưới dạng chuỗi 'dd/MM/yyyy' (ví dụ: '25/10/2002').
+            • Chuyển đổi chuỗi thành DateTime sử dụng DateTime.TryParseExact để đảm bảo không bị lỗi định dạng.
+            • Lấy ngày hiện tại hệ thống (DateTime.Now.Date).
+            • Tính tuổi chính xác tính theo số năm.
+            • Xác định ngày sinh nhật tiếp theo trong năm nay hoặc năm sau. Tính số ngày còn lại đến sinh nhật đó.
+            • Hiển thị: Tuổi hiện tại, Tổng số ngày đã sống từ lúc sinh ra, và Số ngày còn lại đến sinh nhật kế tiếp*/
+
+            Console.WriteLine("Nhập ngày sinh (dd/MM/yyyy): ");
+            String DOB = Console.ReadLine();
+            string fomat = "dd/MM/YYYY";
+            do
+            {
+                if (DateTime.TryParseExact(DOB, fomat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                {
+                    Console.WriteLine("Ngày đã nhập: " + parsedDate.ToString("yyyy/MM/dd"));
+                }
+                else
+                {
+                    Console.WriteLine("Chuỗi ngày tháng không hợp lệ, vui lòng nhập lại!");
+                }
+            } while (true);
+
+            DateTime ngayHienTai = DateTime.Now.Date;
+
+            
+        }
+        public static void Main1(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
             Bai_1();
             Bai_2();
             Bai_3();
