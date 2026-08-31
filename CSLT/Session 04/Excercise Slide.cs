@@ -106,40 +106,7 @@ namespace CSLT.Session_04
 
         }
 
-        static void Bai_6(int a, int b, int c)
-        {
-            // Giải phương trình bậc 2
-            if (a == 0)
-            {
-                if (b == 0)
-                {
-                    if (c == 0)
-                    {
-                        Console.WriteLine("Phương trình có vô số nghiệm, x tùy ý");
-                    }
-                    else // c >< 0
-                    {
-                        Console.WriteLine("Vô lý");
-                    }
-                }
-                else // a = 0, b ><0
-                {
-                    if (c == 0)
-                    {
-                        Console.WriteLine("x = 0");
-                    } 
-                    else
-                    {
-                        Console.WriteLine($"x = {-c/b}");
-                    }    
-                }
-            }
-            else // a>< 0
-            {
-                double delta = Math.Pow(b, 2) - 4 * a * c;
-                if (b 
-            }
-        }
+        
         public static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -148,7 +115,6 @@ namespace CSLT.Session_04
             Bai_3();
             Bai_4();
             Bai_5();
-            Bai_6();
             Console.WriteLine("Nhập hệ số a: ");
             int a = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhập hệ số b: ");
