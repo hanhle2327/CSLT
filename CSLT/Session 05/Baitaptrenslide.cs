@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -128,19 +129,25 @@ namespace CSLT.Session_05
             Console.WriteLine("Nhập vào số các số hạng muốn hiển thị của chuỗi điều hòa:");
             int count = int.Parse( Console.ReadLine() );
             double sum = 0;
-            for (int i = 1; i < count; i++)
-            { 
-                for (int j = 1; j <count; j++)
-                {
-                    Console.Write($"1 / {j}");
-                    sum += 1/j;
-                }
+            Console.Write("Chuỗi điều hòa là:");
+            for (int i = 1; i <= count; i++)
+            {
                 
-                Console.WriteLine();
+                if (i == 1)
+                {
+                    Console.Write(1);
+                }
+                else
+                {
+                    Console.Write($" + 1 / {i}");
+                }
+                sum += 1.0 / i;
+
             }
-            Console.WriteLine($"Tổng của chuổi điều hòa là {sum}");
+            Console.WriteLine();
+            Console.WriteLine($"Tổng của chuổi điều hòa là {sum}");     
         }
-        
+         
         static void Bai_7()
         {
             //Write a program to find the ‘perfect’ numbers within a given number range
@@ -161,15 +168,43 @@ namespace CSLT.Session_05
                 Console.WriteLine("Số nhập vào không là số hoàn hảo");
             }
         }
-        public static void Main (string[] args)
+
+        static void Bai_8()
+        {
+            //Write a program to determine whether a given number is prime or not.
+            //Hãy viết chương trình xác định xem một số cho trước có phải là số nguyên tố hay không.
+            Console.WriteLine("Nhập số cần kiểm tra:");
+            int num = int.Parse( Console.ReadLine() );
+            bool kiem_tra = true;
+            for (int i = 2; i <= num / 2; i++)
+            {
+                if (num % i == 0)
+                {
+                    kiem_tra = false;
+                    break;
+                }
+            }
+                if (kiem_tra)
+                {
+                    Console.WriteLine($"Số {num} là số nguyên tố");
+                }
+                else
+                {
+                    Console.WriteLine($"Số {num} không phải là số nguyên tố");
+                }
+                
+
+        }
+        public static void Main1 (string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            //Bai_1();
-            //Bai_2();
-            //Bai_3();
-            //Bai_45();
+            Bai_1();
+            Bai_2();
+            Bai_3();
+            Bai_45();
             Bai_6();
-            //Bai_7();
+            Bai_7();
+            Bai_8();
         }
     }
 }
