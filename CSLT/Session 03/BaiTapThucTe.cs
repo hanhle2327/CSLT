@@ -197,32 +197,120 @@ namespace CSLT.Session_03
             • Xác định ngày sinh nhật tiếp theo trong năm nay hoặc năm sau. Tính số ngày còn lại đến sinh nhật đó.
             • Hiển thị: Tuổi hiện tại, Tổng số ngày đã sống từ lúc sinh ra, và Số ngày còn lại đến sinh nhật kế tiếp*/
 
-            Console.WriteLine("Nhập ngày sinh (dd/MM/yyyy): ");
-            String DOB = Console.ReadLine();
-            string fomat = "dd/MM/YYYY";
-            do
+            //Console.WriteLine("Nhập ngày sinh (dd/MM/yyyy): ");
+            //String DOB = Console.ReadLine();
+            //string fomat = "dd/MM/YYYY";
+            //do
+            //{
+            //    if (DateTime.TryParseExact(DOB, fomat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            //    {
+            //        Console.WriteLine("Ngày đã nhập: " + parsedDate.ToString("yyyy/MM/dd"));
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Chuỗi ngày tháng không hợp lệ, vui lòng nhập lại!");
+            //    }
+            //} while (true);
+
+            //DateTime ngayHienTai = DateTime.Now.Date;
+
+            Console.Write("Nhập ngày sinh (dd/MM/yyyy): ");
+            DateTime ngaysinh;
+            bool dung = DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngaysinh);
+            if (!dung)
             {
-                if (DateTime.TryParseExact(DOB, fomat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
-                {
-                    Console.WriteLine("Ngày đã nhập: " + parsedDate.ToString("yyyy/MM/dd"));
-                }
-                else
-                {
-                    Console.WriteLine("Chuỗi ngày tháng không hợp lệ, vui lòng nhập lại!");
-                }
-            } while (true);
-
-            DateTime ngayHienTai = DateTime.Now.Date;
-
-            
+                Console.WriteLine("Lỗi ngày sinh: Không hợp lệ!");
+                return;
+            }
+            //Lấy ngày hiện tại của hệ thống:
+            DateTime hientai = DateTime.Now.Date;
+            //Tính tuổi chính xác tính theo số năm:
+            int tuoi = hientai.Year - ngaysinh.Year;
+            // Xác định ngày sinh nhật tiếp theo trong năm nay hoặc năm sau. Tính số ngày còn lại đến sinh nhật đó:
+            //Sinh nhật năm nay:
+            DateTime namnay = new DateTime(hientai.Year, ngaysinh.Month, ngaysinh.Day);
+            if (hientai < namnay)
+            {
+                tuoi = tuoi - 1;
+            }
+            int songaydasong = (int)(hientai - ngaysinh).TotalDays;
+            //Sinh nhật năm sau:
+            DateTime namsau = namnay;
+            if (namnay < hientai)
+            {
+                namsau = namnay.AddYears(1);
+            }
+            //số ngày còn lại để đến sinh nhật tiếp theo:
+            int remaining = (int)(namsau - hientai).TotalDays;
+            Console.WriteLine($"tuồi hiện tại: {tuoi} tuổi");
+            Console.WriteLine($"Bạn đã sống tổng cộng: {songaydasong:#,##0} ngày");
+            Console.WriteLine($"Sinh nhật tiếp theo còn: {remaining} ngày nữa");
         }
-        public static void Main10(string[] args)
+
+        static void Bai_5()
+        {
+            Console.Write("Nhập điểm môn C#: ");
+            double diemCSharp = double.Parse(Console.ReadLine());
+            Console.Write("Số tín chỉ môn C#: ");
+            int tcCSharp = int.Parse(Console.ReadLine());
+            Console.Write("Nhập điểm môn Toán rời rạc: ");
+            double diemToan = double.Parse(Console.ReadLine());
+            Console.Write("Số tín chỉ môn Toán rời rạc: ");
+            int tcToan = int.Parse(Console.ReadLine());
+            Console.Write("Nhập điểm môn Tiếng Anh: ");
+            double diemTiengAnh = double.Parse(Console.ReadLine());
+            Console.Write("Số tín chỉ môn Tiếng Anh: ");
+            int tcTiengAnh = int.Parse(Console.ReadLine());
+            // Tính điểm trung bình trọng số:
+            int tongtc = tcCSharp + tcToan + tcTiengAnh;
+            double diemTB = (diemCSharp * tcCSharp + diemToan * tcToan + diemTiengAnh * tcTiengAnh) / tongtc;
+            // Quy đổi Score_Avg sang Điểm chữ (char/string) và Thang điểm 4 (double):
+            char diemchu;
+            double gpa4;
+            string xeploai;
+            if (diemTB >= 8.5)
+            {
+                diemchu = 'A';
+                gpa4 = 4.0;
+                xeploai = "Xuất sắc/ Giỏi";
+            }
+            else if (diemTB >= 7.0)
+            {
+                diemchu = 'B';
+                gpa4 = 3.0;
+                xeploai = "Khá";
+            }
+            else if (diemTB >= 5.5)
+            {
+                diemchu = 'C';
+                gpa4 = 2.0;
+                xeploai = "Trung bình";
+            }
+            else if (diemTB >= 4.0)
+            {
+                diemchu = 'D';
+                gpa4 = 1.0;
+                xeploai = "Yếu";
+            }
+            else
+            {
+                diemchu = 'F';
+                gpa4 = 0.0;
+                xeploai = "Kém (Trượt)";
+            }
+            Console.WriteLine($"Điểm trung bình thang 10: {diemTB:F2}");
+            Console.WriteLine($"Điểm chữ quy đổi: {diemchu}");
+            Console.WriteLine($"Điểm GPA thang 4: {gpa4:F1}");
+            Console.WriteLine($"Xếp loại học lực: {xeploai}");
+        }
+        public static void Main1(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             Bai_1();
             Bai_2();
             Bai_3();
-            
+            Bai_4();
+            Bai_5();
 
 
 

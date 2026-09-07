@@ -121,7 +121,7 @@ namespace CSLT.Session_04
             else
                 Console.WriteLine($"The coordinate point ({x},{y}) lies on an axis.");
         }
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             Bai_1();
