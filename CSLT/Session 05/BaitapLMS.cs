@@ -26,6 +26,7 @@ namespace CSLT.Session_05
             int luot_thang = 0, tong_luot_choi = 0;
             int level = 1;
             int so_lan_doan = 0;
+            int so_tien = 0;
             do
             {
                 tong_luot_choi++;
@@ -52,6 +53,13 @@ namespace CSLT.Session_05
                         luot_thang++;
                         Console.WriteLine("Bravol! Bạn là thiên tài.");
                         Console.WriteLine($"Bạn đã đoán đúng sau {i + 1} lượt chơi");
+                        if (so_lan_doan == 9)
+                            so_tien = 10 / 2;
+                        else if (so_lan_doan == 6)
+                            so_tien = 10;
+                        else
+                            so_tien = 10 * 3;
+                        Console.WriteLine($"Bạn nhận được {so_tien} nghìn đồng tiền thưởng ");
                         break;
                     }
                     else if (user_num < com_num)
@@ -72,7 +80,7 @@ namespace CSLT.Session_05
                     continue_play = false;
             } while (continue_play);
         }
-        public static void Main (string[] args)
+        public static void Main456 (string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             Game_doan_so ();
