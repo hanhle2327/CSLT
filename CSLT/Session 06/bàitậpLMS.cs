@@ -1,0 +1,217 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Text;
+
+namespace CSLT.Session_06
+{
+    internal class bàitậpLMS
+    {
+        //Bài 1: Tính tổng hai số nguyên
+        //Yêu cầu: Viết hàm `int TinhTong(int a, int b)` nhận vào hai số nguyên và trả về tổng của chúng.
+        static int TinhTong(int a, int b)
+        {
+            return a + b;
+        }
+
+        //Bài 2: Kiểm tra số chẵn lẻ
+        //Yêu cầu: Viết hàm `bool KiemTraChan(int n)` trả về `true` nếu `n` là số chẵn, `false` nếu là số lẻ.
+        // Hướng dẫn: Sử dụng toán tử chia lấy dư `%`. Nếu biểu thức `n % 2 == 0` đúng thì n là số chẵn. Bạn có thể return thẳng biểu thức này.
+
+        static bool KiemTraChan(int n)
+        {
+          
+            return n % 2 == 0;
+        }
+
+        //Bài 3: Tìm số lớn nhất trong ba số
+        //Yêu cầu: Viết hàm `int TimMax(int a, int b, int c)` trả về giá trị lớn nhất trong ba số được truyền vào.
+        //Hướng dẫn: Bạn có thể sử dụng cấu trúc điều kiện `if-else` lồng nhau. Cách ngắn gọn hơn là tận dụng hàm có sẵn `Math.Max(Math.Max(a, b), c)`
+        static int TimMax(int a, int b, int c)
+        {
+            return Math.Max(Math.Max(a, b), c);
+        }
+
+        ////Bài 4: Tính giai thừa của một số
+        //Yêu cầu: Viết hàm `long TinhGiaiThua(int n)` tính và trả về giai thừa của số nguyên dương n(n!).
+        //Hướng dẫn: Sử dụng một biến lưu kết quả(khởi tạo bằng 1). Dùng vòng lặp `for` chạy từ 1 đến `n` để nhân dồn vào
+        //biến kết quả.Chú ý: dùng kiểu `long` để tránh tràn số lượng giới hạn của `int`.
+        static long TinhTongGiaiThua(int n)
+        {
+            int GiaiThua = 1;
+            for ( int i = 1; i <= n; i++)
+            {
+                GiaiThua *= i;
+            }    
+            return GiaiThua;
+        }
+
+        //Bài 5: Đảo ngược chuỗi ký tự
+        //Yêu cầu: Viết hàm `string DaoNguocChuoi(string input)` nhận vào một chuỗi và trả về chuỗi bị đảo ngược.
+        //Hướng dẫn: Chuyển chuỗi thành mảng ký tự `char[]` bằng phương thức `.ToCharArray()`. Sau đó dùng hàm
+        //`Array.Reverse()` để đảo mảng, cuối cùng tạo lại chuỗi mới bằng `new string (char_array)`.
+        static string DaoNguocChuoi (string input)
+        {
+            char[] charArray = input.ToCharArray();
+            Array.Reverse(charArray);
+            return new string (charArray);
+        }
+
+        //Bài 6: Kiểm tra số nguyên tố
+        //Yêu cầu: Viết hàm `bool KiemTraNguyenTo(int n)` kiểm tra xem số nguyên n có phải số nguyên tố hay không.
+        static bool KiemTraNguyenTo(int n)
+        {
+            for (int i = 2; i <= n / 2; i++)
+            {
+                if (n % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //Bài 7: In dãy Fibonacci
+        //Yêu cầu: Viết hàm `void InFibonacci(int n)` in ra n số đầu tiên của dãy Fibonacci.
+        //Kết quả mẫu: Input: 6 -> Output: 0 1 1 2 3 5
+        static void InFibonacci(int n)
+        {
+            if (n < 0) return;
+            int a = 0, b = 1;
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write(a + " ");
+                int TiepTheo = a + b;
+                a = b;
+                b = TiepTheo;                             
+            }    
+        }
+
+        //Bài 8: Đếm số lượng nguyên âm trong chuỗi
+        //Yêu cầu: Viết hàm `int DemNguyenAm(string s)` đếm số lượng các ký tự nguyên âm(a, e, i, o, u) trong chuỗi.
+        //Kết quả mẫu: Input: "Hello World" -> Output: 3
+
+        static int DemNguyenAm(string s)
+        {
+            int Dem = 0;
+            string NguyenAm = "aeiou";
+            foreach (char c in s.ToLower())
+            {
+                if (NguyenAm.Contains(c))
+                {
+                    Dem++;
+                }    
+            }
+            return Dem;
+        }
+
+        //Bài 9: Tính lũy thừa
+        //Yêu cầu: Viết hàm `double TinhLuyThua(double x, int y)` tính x^y(không dùng Math.Pow).
+        //Kết quả mẫu: Input: x = 2, y = 3 -> Output: 8
+
+        static double TinhLuyThua (double x, int y)
+        {
+            if (y == 0) return 1;
+            int SoMu = Math.Abs(y);
+            double LuyThua = 1;
+            for (int i = 0; i <= SoMu; i++)
+            {
+                LuyThua *= x;
+            }    
+            if (y < 0)
+            {
+                return 1 / LuyThua;
+            }
+            return LuyThua;
+        }
+
+        //Bài 10: Tính điểm trung bình của mảng
+        //Yêu cầu: Viết hàm `double TinhTrungBinh(int[] arr)` tính giá trị trung bình của mảng số nguyên.
+        //Kết quả mẫu: Input: [4, 5, 6, 7] -> Output: 5.5
+        static double TinhTrungBinh(int[] arr)
+        {
+
+        }
+
+        public static void Main (string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            // Bài 1
+            Console.WriteLine("Nhập vào hai số nguyên cần tính tổng");
+            Console.Write("Nhập số nguyên thứ nhất: ");
+            int a = int.Parse (Console.ReadLine());
+            Console.Write( "Nhập số nguyên thứ hai: ");
+            int b = int.Parse (Console.ReadLine());
+            int sum = TinhTong (a, b);
+            Console.WriteLine($"Tổng của số {a} và số {b} là {sum}");
+            Console.WriteLine();
+
+            //Bài 2
+            Console.Write("Nhập vào số nguyên cần kiểm tra: ");
+            int n = int.Parse (Console.ReadLine());
+            string KetQua = KiemTraChan(n) ? "chẵn" : "lẻ"; // Toán tử ba ngôi. Cú pháp: điều_kiện ? biểu_thức_nếu_đúng : biểu_thức_nếu_sai; trong đó điều kiện là biểu thức trả về giá trị true/false
+            Console.WriteLine($"Số nguyên {n} là một số {KetQua}");
+            Console.WriteLine();
+
+            //Bài 3
+            Console.WriteLine("Nhập vào ba số nguyên cần tìm Max");
+            Console.Write("Nhập vào số nguyên thứ nhất: ");
+            int so1 = int.Parse(Console.ReadLine());
+            Console.Write("Nhập vào số nguyên thứ hai: ");
+            int so2 = int.Parse(Console.ReadLine());
+            Console.Write("Nhập vào số nguyên thứ ba: ");
+            int so3 = int.Parse(Console.ReadLine());
+            int KetQua3 = TimMax(so1, so2, so3);
+            Console.WriteLine($"Số lớn nhất trong ba số nhập vào ({so1}, {so2}, {so3}) là: {KetQua3 }");
+            Console.WriteLine();
+
+            //Bài 4
+            Console.Write("Nhập vào 1 số muốn tình giai thừa: ");
+            int m = int.Parse(Console.ReadLine());
+            long KetQua4 = TinhTongGiaiThua(m);
+            Console.WriteLine($"Giai thừa của số {m} là: {KetQua4}");
+            Console.WriteLine();
+
+            //Bài 5
+            Console.Write("Nhập vào chuỗi kí tự muốn đảo ngược: ");
+            string chuoi = Console.ReadLine();
+            string KetQua5 = DaoNguocChuoi(chuoi);
+            Console.WriteLine($"Chuỗi ban đầu là: {chuoi}");
+            Console.WriteLine($"Chuỗi sau khi đảo ngược là: {KetQua5}");
+            Console.WriteLine();
+
+            //Bài 6
+            Console.Write("Nhập vào số muốn kiểm tra nguyên tố: ");
+            int NguyenTo = int.Parse(Console.ReadLine());
+            string KetQUa6 = KiemTraNguyenTo(NguyenTo) ? "là số nguyên tố" : "không là số nguyên tố";
+            Console.WriteLine($"Số {NguyenTo} {KetQUa6}");
+            Console.WriteLine();
+
+            //Bài 7
+            Console.Write("Nhập vào số số muốn hiển thị trong dãy Fibonacci: ");
+            int SoFibonacci = int.Parse(Console.ReadLine());
+            Console.Write($"Input: {SoFibonacci} -> Dãy Fibonacci: ");
+            InFibonacci(SoFibonacci);
+            Console.WriteLine();
+
+            //Bài 8
+            Console.WriteLine();
+            Console.Write("Nhập vào 1 cụm từ muốn đếm nguyên âm: ");
+            string TuKhoa = Console.ReadLine();
+            int KetQua8 = DemNguyenAm(TuKhoa);
+            Console.WriteLine($"Cụm từ vừa nhập ({TuKhoa}) có {KetQua8} nguyên âm");
+            Console.WriteLine();
+
+            //Bài 9
+            Console.WriteLine("Nhập số muốn tính lũy thừa:");
+            Console.Write("Nhập cơ số:");
+            double x = double.Parse(Console.ReadLine());
+            Console.Write("Nhập số mũ:");
+            int y = int.Parse(Console.ReadLine());
+            double KetQua9 = TinhLuyThua(x, y);
+            Console.WriteLine($"Lũy thừa của số có cơ số là {x}, số mũ là {y} là: {KetQua9}");
+            Console.WriteLine();
+
+        }
+    }
+}
