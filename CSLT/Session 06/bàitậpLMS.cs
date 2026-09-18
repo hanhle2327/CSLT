@@ -156,6 +156,38 @@ namespace CSLT.Session_06
             return false;
         }
 
+        //Bài 12: Chuyển đổi nhiệt độ
+        //Yêu cầu: Viết hàm `double CelsiusToFahrenheit(double c)` chuyển đổi từ độ C sang độ F.
+        //Kết quả mẫu: Input: 25 -> Output: 77
+        static double CelsiusToFaraheit(double c)
+        {
+            double F = 0;
+            return F = c + 273;
+        }
+
+        //Bài 13: Tìm giá trị nhỏ nhất trong mảng
+        //Yêu cầu: Viết hàm `int TimMin(int[] arr)` trả về phần tử nhỏ nhất trong mảng.
+        //Kết quả mẫu: Input: [10, 5, 8, 2, 9] -> Output: 2
+        static int TimMin(int[] arr)
+        {
+            if (arr == null|| arr.Length == 0)
+            {
+                throw new ArgumentException("Mảng không được trống");
+            }    
+            int Min = arr[0];
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i] < Min)
+                {
+                    Min = arr[i];
+                }    
+            }
+            return Min;
+        }
+
+        //Bài 14: Tính tổng các chữ số của một số nguyên
+        //Yêu cầu: Viết hàm `int TongCacChuSo(int n)` để tính tổng từng chữ số tạo nên n.
+        //Kết quả mẫu: Input: 1234 -> Output: 10 (Vì 1+2+3+4 = 10)
 
         public static void Main (string[] args)
         {
@@ -250,11 +282,31 @@ namespace CSLT.Session_06
             //Console.WriteLine($"Input: [{string.Join(",", arr)}]");//Hàm {string.Join(",", arr)} --> để hiển thị mảng
             //Console.WriteLine($"Output: {KetQua10}");
 
-            //Bài 11
-            Console.Write("Nhập vào chuỗi bạn muốn kiểm tra đảo ngược: ");
-            string ChuoiDoiXung = Console.ReadLine();
-            string KetQua11 = KiemTraDoiXung(ChuoiDoiXung) ? "là chuỗi đối xứng" : "không là chuỗi đối xứng";
-            Console.WriteLine($"Chuỗi bạn vừa nhập vào ({ChuoiDoiXung}) là {KetQua11}");
+            ////Bài 11
+            //Console.Write("Nhập vào chuỗi bạn muốn kiểm tra đảo ngược: ");
+            //string ChuoiDoiXung = Console.ReadLine();
+            //string KetQua11 = KiemTraDoiXung(ChuoiDoiXung) ? "là chuỗi đối xứng" : "không là chuỗi đối xứng";
+            //Console.WriteLine($"Chuỗi bạn vừa nhập vào ({ChuoiDoiXung}) là {KetQua11}");
+
+            ////Bài 12
+            //Console.Write("Nhập vào nhiệt độ (độ C) bạn muốn đổi sáng độ F: ");
+            //double c = double.Parse(Console.ReadLine());
+            //double KetQua12 = CelsiusToFaraheit (c);
+            //Console.WriteLine($"{c} độ C = {KetQua12} độ F");
+
+            //Bài 14
+            Console.Write("Nhập vào số phần tử của mảng: ");
+            int PhanTu = int.Parse(Console.ReadLine());
+            int [] arr = new int [PhanTu];
+            Console.WriteLine($"Nhập vào {PhanTu} số nguyên");
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write($"Nhập vào phần tử thứ {i+1}: ");
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+            int KetQua14 = TimMin(arr);
+            Console.WriteLine($"Mảng nhập vào: [{string.Join(",", arr)}]");
+            Console.WriteLine($"Số nhỏ nhất rong mảng là: {KetQua14}");
         }
     }
 }
