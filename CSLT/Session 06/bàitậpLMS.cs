@@ -130,88 +130,131 @@ namespace CSLT.Session_06
         //Kết quả mẫu: Input: [4, 5, 6, 7] -> Output: 5.5
         static double TinhTrungBinh(int[] arr)
         {
-
+            if (arr == null || arr.Length == 0)
+                return 0;
+            double tong = 0;
+            foreach (int so in arr)
+            {
+                tong += so;
+            }
+            return tong / arr.Length;
         }
+
+        //Bài 11: Kiểm tra chuỗi đối xứng(Palindrome)
+        //Yêu cầu: Viết hàm `bool KiemTraDoiXung(string s)` kiểm tra chuỗi có đọc xuôi và ngược giống nhau không.
+        //Kết quả mẫu: Input: "radar" -> Output: True | Input: "hello" -> Output: False
+
+        static bool KiemTraDoiXung (string s)
+        {
+            char[]charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            string n = new string (charArray);
+            if (s == n)
+            {
+                return true;
+            }    
+            return false;
+        }
+
 
         public static void Main (string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            // Bài 1
-            Console.WriteLine("Nhập vào hai số nguyên cần tính tổng");
-            Console.Write("Nhập số nguyên thứ nhất: ");
-            int a = int.Parse (Console.ReadLine());
-            Console.Write( "Nhập số nguyên thứ hai: ");
-            int b = int.Parse (Console.ReadLine());
-            int sum = TinhTong (a, b);
-            Console.WriteLine($"Tổng của số {a} và số {b} là {sum}");
-            Console.WriteLine();
+            //// Bài 1
+            //Console.WriteLine("Nhập vào hai số nguyên cần tính tổng");
+            //Console.Write("Nhập số nguyên thứ nhất: ");
+            //int a = int.Parse (Console.ReadLine());
+            //Console.Write( "Nhập số nguyên thứ hai: ");
+            //int b = int.Parse (Console.ReadLine());
+            //int sum = TinhTong (a, b);
+            //Console.WriteLine($"Tổng của số {a} và số {b} là {sum}");
+            //Console.WriteLine();
 
-            //Bài 2
-            Console.Write("Nhập vào số nguyên cần kiểm tra: ");
-            int n = int.Parse (Console.ReadLine());
-            string KetQua = KiemTraChan(n) ? "chẵn" : "lẻ"; // Toán tử ba ngôi. Cú pháp: điều_kiện ? biểu_thức_nếu_đúng : biểu_thức_nếu_sai; trong đó điều kiện là biểu thức trả về giá trị true/false
-            Console.WriteLine($"Số nguyên {n} là một số {KetQua}");
-            Console.WriteLine();
+            ////Bài 2
+            //Console.Write("Nhập vào số nguyên cần kiểm tra: ");
+            //int n = int.Parse (Console.ReadLine());
+            //string KetQua = KiemTraChan(n) ? "chẵn" : "lẻ"; // Toán tử ba ngôi. Cú pháp: điều_kiện ? biểu_thức_nếu_đúng : biểu_thức_nếu_sai; trong đó điều kiện là biểu thức trả về giá trị true/false
+            //Console.WriteLine($"Số nguyên {n} là một số {KetQua}");
+            //Console.WriteLine();
 
-            //Bài 3
-            Console.WriteLine("Nhập vào ba số nguyên cần tìm Max");
-            Console.Write("Nhập vào số nguyên thứ nhất: ");
-            int so1 = int.Parse(Console.ReadLine());
-            Console.Write("Nhập vào số nguyên thứ hai: ");
-            int so2 = int.Parse(Console.ReadLine());
-            Console.Write("Nhập vào số nguyên thứ ba: ");
-            int so3 = int.Parse(Console.ReadLine());
-            int KetQua3 = TimMax(so1, so2, so3);
-            Console.WriteLine($"Số lớn nhất trong ba số nhập vào ({so1}, {so2}, {so3}) là: {KetQua3 }");
-            Console.WriteLine();
+            ////Bài 3
+            //Console.WriteLine("Nhập vào ba số nguyên cần tìm Max");
+            //Console.Write("Nhập vào số nguyên thứ nhất: ");
+            //int so1 = int.Parse(Console.ReadLine());
+            //Console.Write("Nhập vào số nguyên thứ hai: ");
+            //int so2 = int.Parse(Console.ReadLine());
+            //Console.Write("Nhập vào số nguyên thứ ba: ");
+            //int so3 = int.Parse(Console.ReadLine());
+            //int KetQua3 = TimMax(so1, so2, so3);
+            //Console.WriteLine($"Số lớn nhất trong ba số nhập vào ({so1}, {so2}, {so3}) là: {KetQua3 }");
+            //Console.WriteLine();
 
-            //Bài 4
-            Console.Write("Nhập vào 1 số muốn tình giai thừa: ");
-            int m = int.Parse(Console.ReadLine());
-            long KetQua4 = TinhTongGiaiThua(m);
-            Console.WriteLine($"Giai thừa của số {m} là: {KetQua4}");
-            Console.WriteLine();
+            ////Bài 4
+            //Console.Write("Nhập vào 1 số muốn tình giai thừa: ");
+            //int m = int.Parse(Console.ReadLine());
+            //long KetQua4 = TinhTongGiaiThua(m);
+            //Console.WriteLine($"Giai thừa của số {m} là: {KetQua4}");
+            //Console.WriteLine();
 
-            //Bài 5
-            Console.Write("Nhập vào chuỗi kí tự muốn đảo ngược: ");
-            string chuoi = Console.ReadLine();
-            string KetQua5 = DaoNguocChuoi(chuoi);
-            Console.WriteLine($"Chuỗi ban đầu là: {chuoi}");
-            Console.WriteLine($"Chuỗi sau khi đảo ngược là: {KetQua5}");
-            Console.WriteLine();
+            ////Bài 5
+            //Console.Write("Nhập vào chuỗi kí tự muốn đảo ngược: ");
+            //string chuoi = Console.ReadLine();
+            //string KetQua5 = DaoNguocChuoi(chuoi);
+            //Console.WriteLine($"Chuỗi ban đầu là: {chuoi}");
+            //Console.WriteLine($"Chuỗi sau khi đảo ngược là: {KetQua5}");
+            //Console.WriteLine();
 
-            //Bài 6
-            Console.Write("Nhập vào số muốn kiểm tra nguyên tố: ");
-            int NguyenTo = int.Parse(Console.ReadLine());
-            string KetQUa6 = KiemTraNguyenTo(NguyenTo) ? "là số nguyên tố" : "không là số nguyên tố";
-            Console.WriteLine($"Số {NguyenTo} {KetQUa6}");
-            Console.WriteLine();
+            ////Bài 6
+            //Console.Write("Nhập vào số muốn kiểm tra nguyên tố: ");
+            //int NguyenTo = int.Parse(Console.ReadLine());
+            //string KetQUa6 = KiemTraNguyenTo(NguyenTo) ? "là số nguyên tố" : "không là số nguyên tố";
+            //Console.WriteLine($"Số {NguyenTo} {KetQUa6}");
+            //Console.WriteLine();
 
-            //Bài 7
-            Console.Write("Nhập vào số số muốn hiển thị trong dãy Fibonacci: ");
-            int SoFibonacci = int.Parse(Console.ReadLine());
-            Console.Write($"Input: {SoFibonacci} -> Dãy Fibonacci: ");
-            InFibonacci(SoFibonacci);
-            Console.WriteLine();
+            ////Bài 7
+            //Console.Write("Nhập vào số số muốn hiển thị trong dãy Fibonacci: ");
+            //int SoFibonacci = int.Parse(Console.ReadLine());
+            //Console.Write($"Input: {SoFibonacci} -> Dãy Fibonacci: ");
+            //InFibonacci(SoFibonacci);
+            //Console.WriteLine();
 
-            //Bài 8
-            Console.WriteLine();
-            Console.Write("Nhập vào 1 cụm từ muốn đếm nguyên âm: ");
-            string TuKhoa = Console.ReadLine();
-            int KetQua8 = DemNguyenAm(TuKhoa);
-            Console.WriteLine($"Cụm từ vừa nhập ({TuKhoa}) có {KetQua8} nguyên âm");
-            Console.WriteLine();
+            ////Bài 8
+            //Console.WriteLine();
+            //Console.Write("Nhập vào 1 cụm từ muốn đếm nguyên âm: ");
+            //string TuKhoa = Console.ReadLine();
+            //int KetQua8 = DemNguyenAm(TuKhoa);
+            //Console.WriteLine($"Cụm từ vừa nhập ({TuKhoa}) có {KetQua8} nguyên âm");
+            //Console.WriteLine();
 
-            //Bài 9
-            Console.WriteLine("Nhập số muốn tính lũy thừa:");
-            Console.Write("Nhập cơ số:");
-            double x = double.Parse(Console.ReadLine());
-            Console.Write("Nhập số mũ:");
-            int y = int.Parse(Console.ReadLine());
-            double KetQua9 = TinhLuyThua(x, y);
-            Console.WriteLine($"Lũy thừa của số có cơ số là {x}, số mũ là {y} là: {KetQua9}");
-            Console.WriteLine();
+            ////Bài 9
+            //Console.WriteLine("Nhập số muốn tính lũy thừa:");
+            //Console.Write("Nhập cơ số:");
+            //double x = double.Parse(Console.ReadLine());
+            //Console.Write("Nhập số mũ:");
+            //int y = int.Parse(Console.ReadLine());
+            //double KetQua9 = TinhLuyThua(x, y);
+            //Console.WriteLine($"Lũy thừa của số có cơ số là {x}, số mũ là {y} là: {KetQua9}");
+            //Console.WriteLine();
 
+            ////Bài 10
+            //Console.Write("Nhập vào số phần tử của mảng:");
+            //int SoPhanTu = int.Parse(Console.ReadLine());
+            //int[] arr = new int[SoPhanTu];
+            //Console.WriteLine($"Nhập vào {SoPhanTu} số nguyên:");
+            //for (int i = 0; i < SoPhanTu; i++)
+            //{
+            //    Console.Write($"Nhập phần tử thứ {i +1}: ");
+            //    arr[i] = int.Parse(Console.ReadLine()) ;
+            //}
+            //double KetQua10 = TinhTrungBinh(arr);
+            //Console.WriteLine($"Input: [{string.Join(",", arr)}]");//Hàm {string.Join(",", arr)} --> để hiển thị mảng
+            //Console.WriteLine($"Output: {KetQua10}");
+
+            //Bài 11
+            Console.Write("Nhập vào chuỗi bạn muốn kiểm tra đảo ngược: ");
+            string ChuoiDoiXung = Console.ReadLine();
+            string KetQua11 = KiemTraDoiXung(ChuoiDoiXung) ? "là chuỗi đối xứng" : "không là chuỗi đối xứng";
+            Console.WriteLine($"Chuỗi bạn vừa nhập vào ({ChuoiDoiXung}) là {KetQua11}");
         }
     }
 }
