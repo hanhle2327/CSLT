@@ -189,7 +189,7 @@ namespace CSLT.Session_06
         //Yêu cầu: Viết hàm `int TongCacChuSo(int n)` để tính tổng từng chữ số tạo nên n.
         //Kết quả mẫu: Input: 1234 -> Output: 10 (Vì 1+2+3+4 = 10)
 
-        public static void Main (string[] args)
+        public static void Main333 (string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             //// Bài 1
