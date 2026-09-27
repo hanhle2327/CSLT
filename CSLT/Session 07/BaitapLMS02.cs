@@ -204,7 +204,6 @@ namespace CSLT.Session_07
             {
                 Console.Write($"{mat[i, rows - 1 - i]} ");
             }
-            Console.WriteLine();
         }
     }
 }
