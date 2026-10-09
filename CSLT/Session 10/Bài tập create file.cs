@@ -8,6 +8,7 @@ namespace CSLT.Session_10
     {
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             string sampleFile = "sample.txt";
             string targetDir = "./TestFolder";
 
@@ -57,7 +58,7 @@ namespace CSLT.Session_10
             PrintFolderStructure(targetDir, "");
 
             // 15. Statistics of characters/numbers using rectangular and jagged arrays
-            Console.WriteLine("\nCharacter and Number Statistics:");
+            Console.WriteLine("\n15. Character and Number Statistics:");
             FileStatistics(sampleFile);
         }
 
@@ -176,61 +177,66 @@ namespace CSLT.Session_10
 
         static void FileStatistics(string path)
         {
-            string[] lines = File.ReadAllLines(path);
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("File không tồn tại!");
+                return;
+            }
 
-            // 1. Frequency calculation using a Rectangular Array (2D Array: ASCII character code vs Count)
+            string content = File.ReadAllText(path);
+
+            // Mảng chữ nhật (2D Array) lưu tần số xuất hiện của 256 mã ASCII
+            // Cột 0: Mã ASCII, Cột 1: Số lần xuất hiện
             int[,] freqRectArray = new int[256, 2];
             for (int i = 0; i < 256; i++)
             {
-                freqRectArray[i, 0] = i; // ASCII code
-                freqRectArray[i, 1] = 0; // Count
+                freqRectArray[i, 0] = i;
+                freqRectArray[i, 1] = 0;
             }
 
-            // 2. Position tracking using a Jagged Array (Jagged array to store arrays of position coordinates [line, col])
-            // To keep it simple, we store a list of positions for each ASCII character index, then convert to jagged array.
-            List<int[]>[] positionLists = new List<int[]>[256];
-            for (int i = 0; i < 256; i++) positionLists[i] = new List<int[]>();
-
-            for (int lineIdx = 0; lineIdx < lines.Length; lineIdx++)
+            // Duyệt qua từng ký tự trong nội dung file
+            foreach (char c in content)
             {
-                string line = lines[lineIdx];
-                for (int colIdx = 0; colIdx < line.Length; colIdx++)
+                int ascii = (int)c;
+                if (ascii < 256)
                 {
-                    char c = line[colIdx];
-                    int ascii = (int)c;
-                    if (ascii < 256)
-                    {
-                        freqRectArray[ascii, 1]++;
-                        positionLists[ascii].Add(new int[] { lineIdx + 1, colIdx + 1 }); // 1-based line, col
-                    }
+                    freqRectArray[ascii, 1]++;
                 }
             }
 
-            // Convert lists of positions to a Jagged Array structure for final querying/display
-            int[][][] positionJaggedArray = new int[256][][];
+            // 1. Đếm tổng số ký tự khác nhau xuất hiện ít nhất 1 lần
+            int totalUniqueChars = 0;
             for (int i = 0; i < 256; i++)
             {
-                positionJaggedArray[i] = positionLists[i].ToArray();
+                if (freqRectArray[i, 1] > 0)
+                {
+                    totalUniqueChars++;
+                }
             }
 
-            // Display results for characters/numbers that appeared at least once
-            Console.WriteLine("    [Character / Number Frequency & Positions]");
+            Console.WriteLine($"\n1. Tổng số ký tự khác nhau xuất hiện: {totalUniqueChars}");
+            Console.WriteLine("2. Chi tiết số lần xuất hiện của từng ký tự:");
+            Console.WriteLine("---------------------------------------------");
+
+            // Hiển thị ký tự và số lần xuất hiện
             for (int i = 0; i < 256; i++)
             {
                 int count = freqRectArray[i, 1];
-                if (count > 0 && !char.IsControl((char)i))
+                if (count > 0)
                 {
                     char c = (char)freqRectArray[i, 0];
-                    Console.Write($"    Char '{c}' (ASCII {i}): Count = {count} | Positions: ");
 
-                    // Read from Jagged Array
-                    foreach (var pos in positionJaggedArray[i])
-                    {
-                        Console.Write($"(Line {pos[0]}, Col {pos[1]}) ");
-                    }
-                    Console.WriteLine();
+                    // Hiển thị tên thay thế cho các ký tự điều khiển (như xuống dòng, tab) để dễ nhìn
+                    string charDisplay = c.ToString();
+                    if (c == '\n') charDisplay = "\\n";
+                    else if (c == '\r') charDisplay = "\\r";
+                    else if (c == '\t') charDisplay = "\\t";
+                    else if (c == ' ') charDisplay = "[Space]";
+
+                    Console.WriteLine($"   - Ký tự '{charDisplay}': xuất hiện {count} lần");
                 }
             }
+            Console.WriteLine("---------------------------------------------");
         }
     }
 }
