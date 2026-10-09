@@ -9,7 +9,7 @@ namespace CSLT.Session_09
 {
     internal class Bài_tập_slide
     {
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
                 // 1. Input a string and print it
