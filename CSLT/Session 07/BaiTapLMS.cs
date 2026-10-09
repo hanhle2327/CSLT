@@ -7,7 +7,7 @@ namespace CSLT.Session_07
     internal class BaiTapLMS
     {
 
-        public static void Main(string[] args)
+        public static void Main4(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             // requests 10 integers from the user and orders them by implementing the bubble sort algorithm.

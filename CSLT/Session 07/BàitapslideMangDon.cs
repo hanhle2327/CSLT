@@ -9,7 +9,7 @@ namespace CSLT.Session_07
 {
     internal class Bàitapjslide
     {
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
 

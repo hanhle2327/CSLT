@@ -7,7 +7,7 @@ namespace CSLT.Session_07
     internal class BaitapLMS02
     {
 
-        public static void Main(string[] args)
+        public static void Main3(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             // 1. Tạo ma trận nguyên N x M ngẫu nhiên (N, M được nhập từ người dùng)
